@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:hulu_advert/global.dart';
 import 'package:hulu_advert/src/routes/routes.dart';
-import 'package:hulu_advert/src/utils/constants.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  registerGlobalDependencies();
+
   runApp(const MyApp());
 }
 
