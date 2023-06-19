@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/themes/themes.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar({
@@ -27,7 +28,8 @@ class CustomAppBar extends AppBar {
                   splashColor: Colors.transparent,
                   child: const Icon(
                     Icons.arrow_back_ios,
-                    size: 20,
+                    size: 22,
+                    color: AppColors.gray,
                   ),
                 )
               : null,

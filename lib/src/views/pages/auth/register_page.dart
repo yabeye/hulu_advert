@@ -2,59 +2,71 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
-import 'package:hulu_advert/src/routes/routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   late final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  late final TextEditingController _fullNameController;
+  late final TextEditingController _phoneController;
   late final TextEditingController _usernameController;
   late final TextEditingController _passwordController;
 
+  late final FocusNode _fullNameFocus;
+  late final FocusNode _phoneFocus;
   late final FocusNode _usernameFocus;
   late final FocusNode _passwordFocus;
 
-  bool _isRemember = false;
   bool _isPasswordVisible = true;
 
   @override
   void initState() {
     super.initState();
 
+    _fullNameController = TextEditingController();
+    _phoneController = TextEditingController();
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
 
+    _fullNameFocus = FocusNode();
+    _phoneFocus = FocusNode();
     _usernameFocus = FocusNode();
     _passwordFocus = FocusNode();
   }
 
   @override
   void dispose() {
+    _fullNameController.dispose();
+    _phoneController.dispose();
     _usernameController.dispose();
     _passwordController.dispose();
 
+    _fullNameFocus.dispose();
+    _phoneFocus.dispose();
     _usernameFocus.dispose();
     _passwordFocus.dispose();
+
     super.dispose();
   }
 
-  void _onLogIn() {
-    // if (!_formKey.currentState!.validate()) {
-    //   return;
-    // }
+  void _onSignUp() {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
     Common.dismissKeyboard();
-    Common.showNotification(title: "Log In", body: "Logged in Successfully");
-
-    Get.offAllNamed(AppRoutes.home);
+    Common.showNotification(
+      title: "Register",
+      body: "You have registered Successfully",
+    );
   }
 
   @override
@@ -62,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
     bool isLoading = false;
 
     return Scaffold(
-      appBar: CustomAppBar(showLeading: false),
+      appBar: CustomAppBar(),
       body: StackLoader(
         isLoading: isLoading,
         child: SingleChildScrollView(
@@ -76,22 +88,61 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Log In",
+                      "Register",
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                   ),
-                  50.height(),
+                  20.height(),
+                  TextFormField(
+                    controller: _fullNameController,
+                    focusNode: _fullNameFocus,
+                    decoration: getInputDecoration(
+                      "full name",
+                      prefixIcon: FontAwesomeIcons.user,
+                    ),
+                    onFieldSubmitted: (v) {
+                      _fullNameFocus.unfocus();
+                      FocusScope.of(context).requestFocus(_phoneFocus);
+                    },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "full name is required",
+                    ),
+                  ),
+                  10.height(),
+                  TextFormField(
+                    controller: _phoneController,
+                    focusNode: _phoneFocus,
+                    keyboardType: TextInputType.phone,
+                    decoration: getInputDecoration(
+                      "phone",
+                      prefixIcon: Icons.phone,
+                    ),
+                    onFieldSubmitted: (v) {
+                      _phoneFocus.unfocus();
+                      FocusScope.of(context).requestFocus(_usernameFocus);
+                    },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "phone is required",
+                    ),
+                  ),
+                  10.height(),
                   TextFormField(
                     controller: _usernameController,
                     focusNode: _usernameFocus,
                     decoration: getInputDecoration(
                       "username",
-                      prefixIcon: FontAwesomeIcons.user,
+                      prefixIcon: Icons.abc,
                     ),
                     onFieldSubmitted: (v) {
                       _usernameFocus.unfocus();
                       FocusScope.of(context).requestFocus(_passwordFocus);
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "username is required",
+                    ),
                   ),
                   10.height(),
                   TextFormField(
@@ -117,9 +168,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onFieldSubmitted: (v) {
-                      _usernameFocus.unfocus();
-                      FocusScope.of(context).requestFocus(_passwordFocus);
+                      _passwordFocus.unfocus();
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "password is required",
+                    ),
                   ),
                   _buildBottomWidgets(isLoading: isLoading),
                 ],
@@ -136,35 +190,22 @@ class _LoginPageState extends State<LoginPage> {
 
     return Column(
       children: [
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.end,
-        //   children: [
-        //     Checkbox(
-        //       onChanged: (bool? v) {
-        //         _isRemember = v ?? false;
-        //       },
-        //       value: _isRemember,
-        //     ),
-        //     Text(
-        //       "remember me",
-        //       style: textTheme.labelLarge,
-        //     )
-        //   ],
-        // ),
         24.height(),
         AppButton(
-          onPressed: isLoading ? null : _onLogIn,
-          text: "Log In",
+          onPressed: isLoading ? null : _onSignUp,
+          text: "Register",
         ),
-        100.height(),
+        50.height(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Don't have an account?", style: textTheme.labelLarge),
+            Text("Already have an account?", style: textTheme.labelLarge),
             TextButton(
-              onPressed: () => Get.toNamed(AppRoutes.register),
+              onPressed: () {
+                Get.back();
+              },
               child: Text(
-                "Register",
+                "Login",
                 style: textTheme.labelLarge!
                     .copyWith(color: Theme.of(context).primaryColor),
               ),

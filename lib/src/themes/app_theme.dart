@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
 
@@ -99,6 +100,20 @@ class AppThemes {
               return AppColors.lightGray;
             },
           ),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.white,
+          selectedIconTheme: IconThemeData(
+            color: AppColors.kPrimaryColor,
+          ),
+          unselectedIconTheme: IconThemeData(color: AppColors.gray),
+          // unselectedLabelStyle: TextStyle(color: AppColors.black),
+          // selectedLabelStyle: TextStyle(color: AppColors.black),
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+        ),
+        cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+          primaryColor: AppColors.kPrimaryColor,
         ),
       );
 }

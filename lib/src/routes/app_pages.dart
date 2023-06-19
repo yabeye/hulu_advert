@@ -11,22 +11,23 @@ class AppPages {
     GetPage(
       name: AppRoutes.initial,
       page: () => const SplashPage(),
-      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnboardingPage(),
-      binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomePage(title: "Home Page!"),
+      page: () => const HomePage(),
       binding: HomeBinding(),
     ),
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),
-      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.register,
+      page: () => const RegisterPage(),
     ),
   ];
 }
