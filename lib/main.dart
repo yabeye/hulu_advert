@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:hulu_advert/global.dart';
 import 'package:hulu_advert/src/routes/routes.dart';
+import 'package:hulu_advert/src/themes/app_theme.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 
 void main() {
@@ -22,10 +23,7 @@ class MyApp extends StatelessWidget {
       onTap: () => Common.dismissKeyboard(),
       child: GetMaterialApp(
         title: appTitle,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: AppThemes.themData,
         initialRoute: AppRoutes.initial,
         getPages: AppPages.pages,
         themeMode: ThemeMode.light,

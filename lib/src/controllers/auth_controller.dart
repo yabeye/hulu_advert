@@ -11,6 +11,8 @@ class AuthController extends GetxController {
   late final PreferenceRepository _prefRepo;
   late final Logger _logger;
 
+  var isLoading = false.obs;
+
   @override
   void onInit() {
     super.onInit();

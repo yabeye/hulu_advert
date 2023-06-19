@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:hulu_advert/src/controllers/auth_controller.dart';
+import 'package:hulu_advert/src/themes/themes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
