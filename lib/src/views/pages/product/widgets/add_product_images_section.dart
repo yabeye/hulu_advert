@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
+import 'package:hulu_advert/src/themes/themes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
 
@@ -35,7 +36,7 @@ class _AddProductImagesSectionState extends State<AddProductImagesSection> {
 
     _photos.insertAll(0, [...files]);
     List<File> uniqueFiles = [];
-    for (var photo in _photos) {
+    for (var photo in _photos.reversed) {
       if (!uniqueFiles.map((e) => e.path).toList().contains(photo.path)) {
         uniqueFiles.add(photo);
       }
@@ -92,7 +93,7 @@ class _AddProductImagesSectionState extends State<AddProductImagesSection> {
                                   radius: const Radius.circular(
                                       defaultBorderRadiusSize),
                                   dashPattern: const [4, 4],
-                                  color: Colors.grey,
+                                  color: AppColors.kSecondaryColor,
                                   borderPadding: const EdgeInsets.all(4),
                                   strokeWidth: 2,
                                   child: const Padding(

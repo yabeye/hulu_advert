@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
+import 'package:hulu_advert/src/views/shared/image_detail.dart';
 
 class PickedImageCard extends StatelessWidget {
   const PickedImageCard({
@@ -23,13 +25,18 @@ class PickedImageCard extends StatelessWidget {
         fit: StackFit.expand,
         clipBehavior: Clip.none,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(
-              defaultBorderRadiusSize,
-            ),
-            child: Image.file(
-              file,
-              fit: BoxFit.cover,
+          InkWell(
+            onTap: () {
+              Get.to(ImageDetail(file: file));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(
+                defaultBorderRadiusSize,
+              ),
+              child: Image.file(
+                file,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(

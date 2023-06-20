@@ -30,7 +30,7 @@ class CustomAppBar extends AppBar {
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 22,
-                    color: AppColors.gray,
+                    // color: AppColors.gray,
                   ),
                 )
               : null,
