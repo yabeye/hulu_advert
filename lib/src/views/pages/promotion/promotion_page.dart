@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hulu_advert/src/controllers/controllers.dart';
-import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
+import 'package:hulu_advert/src/controllers/product_controller.dart';
+import 'package:hulu_advert/src/views/pages/promotion/widgets/widgets.dart';
 
-class ProductPage extends StatelessWidget {
-  ProductPage({super.key});
+class PromotionPage extends StatelessWidget {
+  PromotionPage({super.key});
   final _productController = Get.find<ProductController>();
 
   @override
@@ -32,8 +32,9 @@ class ProductPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AddProductImagesSection(),
-              AddProductInfoSection(),
+              AddPromotionVideoSection(),
+              AddPromotionInfoSection(),
+              SizedBox(height: 30),
             ],
           ),
         ),

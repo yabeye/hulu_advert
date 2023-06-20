@@ -54,7 +54,7 @@ class _AddProductImagesSectionState extends State<AddProductImagesSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Photos",
+            "Product Photos",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           5.height(),
@@ -65,7 +65,7 @@ class _AddProductImagesSectionState extends State<AddProductImagesSection> {
           20.height(),
           SizedBox(
             width: context.width,
-            height: context.height * .4,
+            height: context.height * (_photos.length < 3 ? .2 : .4),
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: _photos.length + 1,

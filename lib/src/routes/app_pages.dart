@@ -6,6 +6,7 @@ import 'package:hulu_advert/src/views/pages/auth/auth.dart';
 import 'package:hulu_advert/src/views/pages/home/home_page.dart';
 import 'package:hulu_advert/src/views/pages/intro/intro.dart';
 import 'package:hulu_advert/src/views/pages/product/product_page.dart';
+import 'package:hulu_advert/src/views/pages/promotion/promotion_page.dart';
 
 class AppPages {
   AppPages._();
@@ -34,6 +35,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.product,
       page: () => ProductPage(),
+      binding: ProductBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.promotion,
+      page: () => PromotionPage(),
       binding: ProductBinding(),
     ),
   ];

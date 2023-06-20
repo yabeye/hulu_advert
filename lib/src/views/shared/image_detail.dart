@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
+
 import 'package:hulu_advert/src/extensions/file_extensions.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
-import 'package:hulu_advert/src/utils/utils.dart';
 
 class ImageDetail extends StatelessWidget {
   const ImageDetail({
@@ -26,19 +27,19 @@ class ImageDetail extends StatelessWidget {
         backgroundColor: AppColors.black.withOpacity(.5),
         body: Stack(
           children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Image.file(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: PhotoView(
+                    imageProvider: FileImage(
                       file,
-                      fit: BoxFit.fitWidth,
+                      // fit: BoxFit.fitWidth,
                       // width: context.width,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Positioned(
               top: 0,
@@ -50,7 +51,6 @@ class ImageDetail extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: AppColors.black.withOpacity(.5),
-                  borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -58,10 +58,13 @@ class ImageDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: Get.back,
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        size: 22,
-                        color: Colors.white,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 22,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     Padding(

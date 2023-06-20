@@ -6,4 +6,5 @@ class AppRoutes {
   static const login = '/login'; // Login page
   static const register = '/register'; // SignUp page
   static const product = '/product'; // Product page
+  static const promotion = '/promotion'; // promotion page
 }

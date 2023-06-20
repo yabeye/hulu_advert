@@ -79,4 +79,14 @@ class Common {
     }
     return images;
   }
+
+  static Future<XFile?> pickVideo() async {
+    final ImagePicker picker = ImagePicker();
+
+    final XFile? galleryVideo =
+        await picker.pickVideo(source: ImageSource.gallery);
+    //TODO: Do some compressio here!
+
+    return galleryVideo;
+  }
 }

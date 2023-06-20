@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
+import 'package:hulu_advert/src/utils/utils.dart';
 
 InputDecoration getInputDecoration(
   String? hintText, {
@@ -7,15 +8,16 @@ InputDecoration getInputDecoration(
   Widget? suffixIcon,
 }) =>
     InputDecoration(
+      isDense: false,
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
         borderSide: const BorderSide(
           color: AppColors.darkerLightGray,
           width: 1.5,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
         borderSide: const BorderSide(
           color: AppColors.kPrimaryColor,
           width: 1.5,
@@ -23,8 +25,8 @@ InputDecoration getInputDecoration(
       ),
       hintText: hintText,
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 20,
+        horizontal: 12,
+        vertical: 12,
       ),
       suffixIconConstraints: const BoxConstraints(
           // maxWidth: 0,

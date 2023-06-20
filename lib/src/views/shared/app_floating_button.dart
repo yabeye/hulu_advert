@@ -61,7 +61,9 @@ class AppFloatingButton extends StatelessWidget {
           label: 'Add Promotion',
           labelStyle: const TextStyle(color: AppColors.black),
           visible: true,
-          onTap: onChooseUpload,
+          onTap: () {
+            Get.toNamed(AppRoutes.promotion);
+          },
         ),
       ],
       child: const Icon(Icons.add, color: AppColors.white),

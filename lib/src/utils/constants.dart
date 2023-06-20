@@ -11,10 +11,11 @@ const board3Desc =
     'You can also share your own products and promotions with others';
 
 // Style constants
-const defaultBorderRadiusSize = 16.0;
+const defaultBorderRadiusSize = 8.0;
 
 // Asset constants
 const productImagesMax = 5;
+const promotionVideoMaxSize = 30; // in mB
 // const _iconsPath = "assets/icons/";
 const _imagesPath = "assets/images/";
 

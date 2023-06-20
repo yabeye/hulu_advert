@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:hulu_advert/src/controllers/controllers.dart';
+import 'package:hulu_advert/src/controllers/product_controller.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
 import 'package:hulu_advert/src/utils/input_validators.dart';
 import 'package:hulu_advert/src/views/shared/custom_textfield.dart';
 
-class AddProductInfoSection extends StatefulWidget {
-  const AddProductInfoSection({super.key});
+class AddPromotionInfoSection extends StatefulWidget {
+  const AddPromotionInfoSection({super.key});
 
   @override
-  State<AddProductInfoSection> createState() => _AddProductInfoSectionState();
+  State<AddPromotionInfoSection> createState() =>
+      _AddPromotionInfoSectionState();
 }
 
-class _AddProductInfoSectionState extends State<AddProductInfoSection> {
+class _AddPromotionInfoSectionState extends State<AddPromotionInfoSection> {
   final _productController = Get.find<ProductController>();
   final _nameFocus = FocusNode();
   final _descFocus = FocusNode();
@@ -37,20 +38,20 @@ class _AddProductInfoSectionState extends State<AddProductInfoSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Product Information",
+            "Promotion Details",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           // 5.height(),
-          // Text(
-          //   "You can images",
-          //   style: Theme.of(context).textTheme.titleMedium,
-          // ),
+          Text(
+            "Additional information about the promotion",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           20.height(),
           TextFormField(
             controller: _productController.nameController,
             focusNode: _nameFocus,
             decoration: getInputDecoration(
-              "name",
+              "name of the product",
               prefixIcon: Icons.abc,
             ),
             onFieldSubmitted: (v) {
@@ -65,7 +66,7 @@ class _AddProductInfoSectionState extends State<AddProductInfoSection> {
             controller: _productController.descriptionController,
             focusNode: _descFocus,
             decoration: getInputDecoration(
-              "product description",
+              "promotion description",
               // prefixIcon: FontAwesomeIcons.penClip,
             ),
             onFieldSubmitted: (v) {
