@@ -14,6 +14,7 @@ const board3Desc =
 const defaultBorderRadiusSize = 16.0;
 
 // Asset constants
+const productImagesMax = 5;
 // const _iconsPath = "assets/icons/";
 const _imagesPath = "assets/images/";
 

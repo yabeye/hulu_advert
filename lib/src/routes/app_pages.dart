@@ -2,8 +2,9 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:hulu_advert/src/bindings/bindings.dart';
 import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/views/pages/auth/auth.dart';
-import 'package:hulu_advert/src/views/pages/home/home.dart';
+import 'package:hulu_advert/src/views/pages/home/home_page.dart';
 import 'package:hulu_advert/src/views/pages/intro/intro.dart';
+import 'package:hulu_advert/src/views/pages/product/product_page.dart';
 
 class AppPages {
   AppPages._();
@@ -28,6 +29,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.register,
       page: () => const RegisterPage(),
+    ),
+    GetPage(
+      name: AppRoutes.product,
+      page: () => const ProductPage(),
     ),
   ];
 }

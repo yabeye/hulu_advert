@@ -9,6 +9,7 @@ class CustomAppBar extends AppBar {
     double? elevation,
     Brightness? brightness,
     bool showLeading = true,
+    Widget? title,
     VoidCallback? onBack,
   }) : super(
           key: key,
@@ -33,5 +34,6 @@ class CustomAppBar extends AppBar {
                   ),
                 )
               : null,
+          title: title,
         );
 }

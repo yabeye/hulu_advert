@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:hulu_advert/src/themes/app_colors.dart';
 
 class Common {
   Common._();
+
+  // UI
 
   static void dismissKeyboard() => Get.focusScope!.unfocus();
 
@@ -30,14 +36,19 @@ class Common {
                   child: Text(
                     title ?? "",
                     style: const TextStyle(
-                      fontSize: 22,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(body ?? ""),
+                  child: Text(
+                    body ?? "",
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -50,5 +61,22 @@ class Common {
         duration: const Duration(milliseconds: 2000),
       ),
     );
+  }
+
+  // Assets
+  static Future<List<File>> pickImages() async {
+    List<File> images = [];
+    final ImagePicker picker = ImagePicker();
+    final imageFiles = await picker.pickMultiImage(
+      imageQuality: 100,
+      maxHeight: 1000,
+      maxWidth: 1000,
+    );
+    if (imageFiles.isNotEmpty) {
+      for (final image in imageFiles) {
+        images.add(File(image.path));
+      }
+    }
+    return images;
   }
 }
