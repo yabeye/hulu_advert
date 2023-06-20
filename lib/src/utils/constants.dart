@@ -10,6 +10,9 @@ const board3Title = 'SHARE';
 const board3Desc =
     'You can also share your own products and promotions with others';
 
+const tab1Name = "Products";
+const tab2Name = "Promotions";
+
 // Style constants
 const defaultBorderRadiusSize = 8.0;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hulu_advert/src/views/pages/feed/feed_page.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,12 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget _getBody() {
     switch (_page) {
       case 0:
-        return const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("List screen")],
-          ),
-        );
+        return const FeedPage();
       case 1:
         return const Center(
           child: Column(

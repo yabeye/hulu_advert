@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/ui_controller.dart';
 
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    // Get.lazyPut<Logger>(() => Logger());
+    Get.lazyPut<UIController>(() => UIController());
   }
 }
