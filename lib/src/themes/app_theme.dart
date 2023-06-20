@@ -13,42 +13,51 @@ class AppThemes {
         cardColor: AppColors.kSecondaryColor,
         fontFamily: font,
         // textTheme: ThemeData.light().textTheme.apply(fontFamily: font),
-        textTheme: const TextTheme(
+        textTheme: TextTheme(
           displayLarge: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
             color: Colors.black,
+            fontFamily: font,
           ),
           displayMedium: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: Colors.black,
+            fontFamily: font,
           ),
           displaySmall: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.black,
+            fontFamily: font,
           ),
           bodyLarge: TextStyle(
             fontSize: 20,
+            fontFamily: font,
           ),
           bodyMedium: TextStyle(
             fontSize: 18,
+            fontFamily: font,
           ),
           bodySmall: TextStyle(
             fontSize: 16,
+            fontFamily: font,
           ),
           titleLarge: TextStyle(
             fontSize: 16,
-            color: AppColors.gray,
+            fontFamily: font,
+            // color: AppColors.gray,
           ),
           titleMedium: TextStyle(
             fontSize: 14,
-            color: AppColors.gray,
+            fontFamily: font,
+            // color: AppColors.gray,
           ),
           titleSmall: TextStyle(
+            fontFamily: font,
             fontSize: 12,
-            color: AppColors.gray,
+            // color: AppColors.gray,
           ),
         ),
         colorScheme: const ColorScheme.light(
@@ -113,7 +122,7 @@ class AppThemes {
           border: InputBorder.none,
           errorBorder: InputBorder.none,
           labelStyle: TextStyle(
-            color: Colors.black54,
+            color: Colors.black,
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(

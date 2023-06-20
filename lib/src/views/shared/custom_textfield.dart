@@ -29,6 +29,6 @@ InputDecoration getInputDecoration(
       suffixIconConstraints: const BoxConstraints(
           // maxWidth: 0,
           ),
-      prefixIcon: Icon(prefixIcon),
+      prefixIcon: prefixIcon == null ? null : Icon(prefixIcon),
       suffixIcon: suffixIcon,
     );

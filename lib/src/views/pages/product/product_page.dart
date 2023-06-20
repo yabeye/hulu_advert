@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/controllers.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  ProductPage({super.key});
+  final _productController = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,9 @@ class ProductPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () async {
+                await _productController.addProduct();
+              },
               icon: const Icon(Icons.add),
               label: const Text('Add'),
             ),
@@ -28,6 +32,7 @@ class ProductPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              AddProductInfoSection(),
               AddProductImagesSection(),
             ],
           ),
