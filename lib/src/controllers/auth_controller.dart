@@ -36,8 +36,8 @@ class AuthController extends GetxController {
   }
 
   navigateToPage() async {
-    Get.offAllNamed(AppRoutes.home);
-    return;
+    // Get.offAllNamed(AppRoutes.home);
+    // return;
     final Preference pref = await _prefRepo.getAppPref();
 
     _logger.i("Pref: ${pref.toString()}");

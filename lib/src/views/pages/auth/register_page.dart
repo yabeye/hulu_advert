@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
+import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
@@ -67,6 +68,8 @@ class _RegisterPageState extends State<RegisterPage> {
       title: "Register",
       body: "You have registered Successfully",
     );
+
+    Get.toNamed(AppRoutes.home);
   }
 
   @override
