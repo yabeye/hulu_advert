@@ -35,6 +35,7 @@ class AppThemes {
           bodyLarge: TextStyle(
             fontSize: 20,
             fontFamily: font,
+            fontWeight: FontWeight.w600,
           ),
           bodyMedium: TextStyle(
             fontSize: 18,

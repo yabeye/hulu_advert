@@ -2,6 +2,8 @@
 const appTitle = "Hulu Advert App";
 const appName = "Hulu Advert";
 
+const currencySymbol = "ETB ";
+
 const board1Title = 'DISCOVER PRODUCTS';
 const board1Desc = 'You can find more products in many categories';
 const board2Title = 'WATCH PROMOTIONS';
@@ -27,3 +29,4 @@ const appLogo = "${_imagesPath}hulu-advert.png";
 const board1 = "${_imagesPath}board-1.png";
 const board2 = "${_imagesPath}board-2.png";
 const board3 = "${_imagesPath}board-3.png";
+const imgTShirt = "${_imagesPath}t-shirt.jpg";
