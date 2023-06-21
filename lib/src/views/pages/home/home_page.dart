@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hulu_advert/src/views/pages/feed/feed_page.dart';
+import 'package:hulu_advert/src/views/pages/miniAdmin/mini_admin_page.dart';
 import 'package:hulu_advert/src/views/pages/search/search_page.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
@@ -35,12 +36,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const SearchPage();
       case 2:
-        return const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Analytics screen")],
-          ),
-        );
+        return const MiniAdminPage();
       default:
         return const Center(
           child: Column(
@@ -63,11 +59,13 @@ class _HomePageState extends State<HomePage> {
           setState(() {});
         },
       ),
-      floatingActionButton: AppFloatingButton(
-        isDialOpen: _isDialOpen,
-        onChooseUpload: _onChooseUpload,
-        visible: true,
-      ),
+      floatingActionButton: _page == 2
+          ? null
+          : AppFloatingButton(
+              isDialOpen: _isDialOpen,
+              onChooseUpload: _onChooseUpload,
+              visible: true,
+            ),
     );
   }
 }
