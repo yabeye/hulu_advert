@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/controllers/controllers.dart';
+import 'package:hulu_advert/src/extensions/num_extensions.dart';
 
 import 'package:hulu_advert/src/themes/themes.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
@@ -66,6 +67,9 @@ class CustomTabScrollView extends StatelessWidget {
             ),
             floating: true,
             snap: true,
+          ),
+          SliverToBoxAdapter(
+            child: 10.height(),
           ),
           ...children[tabIndex],
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hulu_advert/src/extensions/num_extensions.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
+import 'package:hulu_advert/src/views/pages/promotion/widgets/widgets.dart';
 
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
@@ -18,9 +18,6 @@ class _FeedPageState extends State<FeedPage> {
     return CustomTabScrollView(
       children: [
         [
-          SliverToBoxAdapter(
-            child: 10.height(),
-          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
@@ -38,10 +35,17 @@ class _FeedPageState extends State<FeedPage> {
         ],
         [
           SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const ListTile(title: Text('Second')),
-              ],
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8,
+                  ),
+                  child: PromotionCard(),
+                );
+              },
+              childCount: 10,
             ),
           ),
         ],

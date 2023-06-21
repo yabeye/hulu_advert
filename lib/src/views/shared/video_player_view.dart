@@ -14,10 +14,14 @@ class VideoPlayerView extends StatefulWidget {
     super.key,
     required this.url,
     required this.dataSourceType,
+    this.autoPlay = true,
+    this.showVideoDetail = false,
   });
 
   final String url;
   final DataSourceType dataSourceType;
+  final bool autoPlay;
+  final bool showVideoDetail;
 
   @override
   State<VideoPlayerView> createState() => _VideoPlayerViewState();
@@ -50,7 +54,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
     _videoPlayerController.initialize().then(
           (_) => setState(
             () => _chewieController = ChewieController(
-              autoPlay: true,
+              autoPlay: widget.autoPlay,
               looping: true,
               // showControls: false,
               playbackSpeeds: [],
@@ -119,17 +123,25 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                 ),
               ],
             ),
-            5.height(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  widget.url.split("/").last,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  // overflow: TextOverflow.ellipsis,
-                ),
-              ),
+            SizedBox(
+              child: widget.showVideoDetail
+                  ? null
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          children: [
+                            5.height(),
+                            Text(
+                              widget.url.split("/").last,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              // overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),

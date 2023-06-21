@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
-import 'package:hulu_advert/src/views/shared/custom_carousel_slider.dart';
+import 'package:hulu_advert/src/views/shared/video_player_view.dart';
 
-class ProductCard extends StatefulWidget {
-  const ProductCard({
+class PromotionCard extends StatefulWidget {
+  const PromotionCard({
     super.key,
   });
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<PromotionCard> createState() => _PromotionCardState();
 }
 
-class _ProductCardState extends State<ProductCard> {
+class _PromotionCardState extends State<PromotionCard> {
   int currentIndex = 0;
   int count = 5;
   @override
@@ -28,78 +29,44 @@ class _ProductCardState extends State<ProductCard> {
       ),
       child: Column(
         children: [
-          Stack(
+          const Stack(
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(defaultBorderRadiusSize),
                   topRight: Radius.circular(defaultBorderRadiusSize),
                 ),
-                child: CustomCarouselSlider(
-                  imageUrls: const [
-                    board1,
-                    imgTShirt,
-                    board3,
-                  ],
-                  currentIndex: currentIndex,
-                  onPageChanged: (v) {
-                    currentIndex = v;
-                    setState(() {});
-                  },
-                  height: 400,
+                child: VideoPlayerView(
+                  url:
+                      'data/user/0/com.example.hulu_advert/cache/cb4ed5f4-f9af-4f36-88c7-d8683864b2d0/pexels-benjamin-hastings-17209196-960x540-30fps.mp4',
+                  dataSourceType: DataSourceType.file,
+                  autoPlay: false,
                 ),
               ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.black.withAlpha(108),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(defaultBorderRadiusSize),
-                      bottomRight: Radius.circular(
-                        defaultBorderRadiusSize / 2,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text(
-                      "22.5 kB",
-                      style: textTheme.titleMedium!.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.black.withAlpha(108),
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(defaultBorderRadiusSize),
-                      bottomLeft: Radius.circular(
-                        defaultBorderRadiusSize / 2,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 4.0,
-                    ),
-                    child: Text(
-                      "$currentIndex / $count",
-                      style: textTheme.titleMedium!.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   top: 0,
+              //   left: 0,
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       color: AppColors.black.withAlpha(108),
+              //       borderRadius: const BorderRadius.only(
+              //         topLeft: Radius.circular(defaultBorderRadiusSize),
+              //         bottomRight: Radius.circular(
+              //           defaultBorderRadiusSize / 2,
+              //         ),
+              //       ),
+              //     ),
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(4.0),
+              //       child: Text(
+              //         "2.5 mB",
+              //         style: textTheme.titleMedium!.copyWith(
+              //           color: Colors.white,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           Container(
