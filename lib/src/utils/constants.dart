@@ -30,3 +30,4 @@ const board1 = "${_imagesPath}board-1.png";
 const board2 = "${_imagesPath}board-2.png";
 const board3 = "${_imagesPath}board-3.png";
 const imgTShirt = "${_imagesPath}t-shirt.jpg";
+const imgSearching = "${_imagesPath}searching.png";

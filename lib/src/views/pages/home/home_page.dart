@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hulu_advert/src/views/pages/feed/feed_page.dart';
+import 'package:hulu_advert/src/views/pages/search/search_page.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,12 +33,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return const FeedPage();
       case 1:
-        return const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Search screen")],
-          ),
-        );
+        return const SearchPage();
       case 2:
         return const Center(
           child: Column(
