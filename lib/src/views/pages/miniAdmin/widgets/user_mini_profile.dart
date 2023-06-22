@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hulu_advert/src/controllers/auth_controller.dart';
+import 'package:hulu_advert/src/controllers/controllers.dart';
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
@@ -11,6 +11,8 @@ class UserMiniProfile extends StatelessWidget {
   });
 
   final _authController = Get.find<AuthController>();
+  final _productController = Get.find<ProductController>();
+  final _promotionController = Get.find<PromotionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,7 @@ class UserMiniProfile extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Text(
-                          "4",
+                          _productController.myProducts.length.toString(),
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                       ],
@@ -99,7 +101,7 @@ class UserMiniProfile extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Text(
-                          "8",
+                          _promotionController.myPromotions.length.toString(),
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                       ],

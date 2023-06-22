@@ -25,13 +25,15 @@ class _RegisterPageState extends State<RegisterPage> {
   late final TextEditingController _phoneController;
   late final TextEditingController _usernameController;
   late final TextEditingController _passwordController;
+  late final TextEditingController _conformPasswordController;
 
   late final FocusNode _fullNameFocus;
   late final FocusNode _phoneFocus;
   late final FocusNode _usernameFocus;
   late final FocusNode _passwordFocus;
+  late final FocusNode _conformPasswordFocus;
 
-  bool _isPasswordVisible = true;
+  bool _isPasswordVisible = false;
 
   @override
   void initState() {
@@ -41,11 +43,13 @@ class _RegisterPageState extends State<RegisterPage> {
     _phoneController = TextEditingController();
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
+    _conformPasswordController = TextEditingController();
 
     _fullNameFocus = FocusNode();
     _phoneFocus = FocusNode();
     _usernameFocus = FocusNode();
     _passwordFocus = FocusNode();
+    _conformPasswordFocus = FocusNode();
   }
 
   @override
@@ -59,6 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _phoneFocus.dispose();
     _usernameFocus.dispose();
     _passwordFocus.dispose();
+    _conformPasswordFocus.dispose();
 
     super.dispose();
   }
@@ -199,10 +204,46 @@ class _RegisterPageState extends State<RegisterPage> {
                     maxLength: 32,
                     onFieldSubmitted: (v) {
                       _passwordFocus.unfocus();
+                      FocusScope.of(context)
+                          .requestFocus(_conformPasswordFocus);
                     },
                     validator: (v) => InputValidators.withInRange(
                       v,
                       min: 6,
+                    ),
+                  ),
+                  10.height(),
+                  TextFormField(
+                    controller: _conformPasswordController,
+                    focusNode: _conformPasswordFocus,
+                    obscureText: !_isPasswordVisible,
+                    decoration: getInputDecoration(
+                      "confirm password",
+                      prefixIcon: Icons.lock_outline,
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     _isPasswordVisible = !_isPasswordVisible;
+                      //     setState(() {});
+                      //   },
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(right: 8.0),
+                      //     child: Icon(
+                      //       _isPasswordVisible
+                      //           ? Icons.visibility_off_outlined
+                      //           : Icons.visibility_outlined,
+                      //     ),
+                      //   ),
+                      // ),
+                    ),
+                    maxLength: 32,
+                    onFieldSubmitted: (v) {
+                      _conformPasswordFocus.unfocus();
+                    },
+                    validator: (v) => InputValidators.withInRange(
+                      v,
+                      min: 6,
+                      similar: _passwordController.text,
+                      message: "passwords don't match",
                     ),
                   ),
                   _buildBottomWidgets(isLoading: isLoading),

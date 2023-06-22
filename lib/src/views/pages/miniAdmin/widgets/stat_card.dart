@@ -1,31 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/product_controller.dart';
+import 'package:hulu_advert/src/controllers/promotion_controller.dart';
+import 'package:hulu_advert/src/controllers/user_controller.dart';
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
+import 'package:hulu_advert/src/repositories/repositories.dart';
 import 'package:hulu_advert/src/themes/themes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 
-class StatCard extends StatelessWidget {
+class StatCard extends StatefulWidget {
   const StatCard({super.key});
 
   @override
+  State<StatCard> createState() => _StatCardState();
+}
+
+class _StatCardState extends State<StatCard> {
+  int count = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Statistics",
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        8.height(),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            StatisticsCount(count: '10', label: 'Users'),
-            StatisticsCount(count: '25', label: 'Products'),
-            StatisticsCount(count: '20', label: 'Promotions'),
-          ],
-        ),
-      ],
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Statistics",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          8.height(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              StatisticsCount(
+                count: Get.find<UserController>().feedUsers.length.toString(),
+                label: 'Users',
+              ),
+              StatisticsCount(
+                  count: Get.find<ProductController>()
+                      .feedProducts
+                      .length
+                      .toString(),
+                  label: 'Products'),
+              StatisticsCount(
+                count: Get.find<PromotionController>()
+                    .feedPromotions
+                    .length
+                    .toString(),
+                label: 'Promotions',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -8,13 +8,17 @@ class InputValidators {
     return null;
   }
 
-  static withInRange(v, {int? min}) {
+  static withInRange(v, {int? min, String? similar, String? message}) {
     if (v == null || v!.isEmpty) {
       return "This filed is required";
     }
 
     if (v.length < min) {
       return "min $min required";
+    }
+
+    if ((similar ?? v) != v) {
+      return message ?? "don't match";
     }
 
     return null;

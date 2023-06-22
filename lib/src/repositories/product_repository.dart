@@ -96,8 +96,8 @@ class ProductRepository {
     final maps = await db.query(
       tableProducts,
       columns: ProductFields.values,
+      orderBy: "${ProductFields.createdAt} DESC",
     );
-    _logger.i("getAllProducts, result: $maps");
 
     final imageMaps = await getAllProductImages();
 

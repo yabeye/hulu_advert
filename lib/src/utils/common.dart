@@ -103,7 +103,6 @@ class Common {
 
     final XFile? galleryVideo =
         await picker.pickVideo(source: ImageSource.gallery);
-    //TODO: Do some compressio here!
 
     return galleryVideo;
   }

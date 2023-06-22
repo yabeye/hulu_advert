@@ -3,6 +3,7 @@ const String tableProducts = "Products";
 class ProductFields {
   static const List<String> values = [
     id,
+    ownerId,
     name,
     desc,
     unitPrice,
@@ -11,6 +12,7 @@ class ProductFields {
   ];
 
   static const String id = "_id";
+  static const String ownerId = "owner_id";
   static const String name = "name";
   static const String desc = "desc";
   static const String unitPrice = "unit_price";
@@ -20,6 +22,7 @@ class ProductFields {
 
 class ProductModel {
   int? id;
+  int? ownerId;
   String? name;
   String? desc;
   double? unitPrice;
@@ -29,6 +32,7 @@ class ProductModel {
 
   ProductModel({
     this.id,
+    this.ownerId,
     this.name,
     this.desc,
     this.unitPrice,
@@ -39,6 +43,7 @@ class ProductModel {
 
   ProductModel copyWith({
     int? id,
+    int? ownerId,
     String? name,
     String? desc,
     double? unitPrice,
@@ -48,6 +53,7 @@ class ProductModel {
   }) {
     return ProductModel(
       id: id ?? this.id,
+      ownerId: ownerId ?? this.ownerId,
       name: name ?? this.name,
       desc: desc ?? this.desc,
       unitPrice: unitPrice ?? this.unitPrice,
@@ -60,6 +66,7 @@ class ProductModel {
   Map<String, dynamic> toMap() {
     return {
       ProductFields.id: id,
+      ProductFields.ownerId: ownerId,
       ProductFields.name: name,
       ProductFields.desc: desc,
       ProductFields.unitPrice: unitPrice,
@@ -71,6 +78,7 @@ class ProductModel {
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
       id: map[ProductFields.id]?.toInt(),
+      ownerId: map[ProductFields.ownerId]?.toInt(),
       name: map[ProductFields.name],
       desc: map[ProductFields.desc],
       unitPrice: map[ProductFields.unitPrice],
@@ -83,6 +91,6 @@ class ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, desc: $desc, unitPrice: $unitPrice, amount: $amount, createdAt: $createdAt, images: $images)';
+    return 'ProductModel(id: $id, ownerId: $ownerId, name: $name, desc: $desc, unitPrice: $unitPrice, amount: $amount, createdAt: $createdAt, images: $images)';
   }
 }

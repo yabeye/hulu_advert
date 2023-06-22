@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/controllers/controllers.dart';
-import 'package:hulu_advert/src/routes/app_pages.dart';
 import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
@@ -17,7 +16,8 @@ class ProductPage extends StatelessWidget {
       Common.showLoading();
       await _productController.addProduct();
       Get.back();
-      Common.showNotification(title: "Product added");
+      Common.dismissKeyboard();
+      Common.showNotification(title: "Success", body: "Product added");
       Get.until((route) => route.settings.name!.startsWith(AppRoutes.home));
     } on HttpException catch (e) {
       Get.back();

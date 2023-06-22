@@ -103,7 +103,7 @@ class _AddProductInfoSectionState extends State<AddProductInfoSection> {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')),
                 FilteringTextInputFormatter.deny(RegExp(r'^0')),
-                MaxValueFormatter(maxValue: 1000000),
+                // MaxValueFormatter(maxValue: 1000000),
               ],
             ),
             10.height(),
@@ -125,7 +125,7 @@ class _AddProductInfoSectionState extends State<AddProductInfoSection> {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')),
                 FilteringTextInputFormatter.deny(RegExp(r'^0')),
-                MaxValueFormatter(maxValue: 100000),
+                // MaxValueFormatter(maxValue: 100000),
               ],
             ),
             const SizedBox(height: 20),

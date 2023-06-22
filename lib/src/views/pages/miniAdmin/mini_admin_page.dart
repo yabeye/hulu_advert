@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
 import 'package:hulu_advert/src/views/pages/miniAdmin/widgets/user_mini_profile.dart';
@@ -51,6 +52,7 @@ class _MiniAdminPageState extends State<MiniAdminPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const SizedBox.shrink(),
                     Column(
                       children: [
                         // Text(

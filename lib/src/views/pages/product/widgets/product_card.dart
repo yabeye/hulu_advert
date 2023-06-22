@@ -88,29 +88,31 @@ class _ProductCardState extends State<ProductCard> {
               Positioned(
                 top: 0,
                 right: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.black.withAlpha(108),
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(defaultBorderRadiusSize),
-                      bottomLeft: Radius.circular(
-                        defaultBorderRadiusSize / 2,
+                child: (currentIndex + 1) == count
+                    ? Container()
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.black.withAlpha(108),
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(defaultBorderRadiusSize),
+                            bottomLeft: Radius.circular(
+                              defaultBorderRadiusSize / 2,
+                            ),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 4.0,
+                          ),
+                          child: Text(
+                            "${(currentIndex + 1)} / $count",
+                            style: textTheme.titleMedium!.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 4.0,
-                    ),
-                    child: Text(
-                      "${(currentIndex + 1)} / $count",
-                      style: textTheme.titleMedium!.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

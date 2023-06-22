@@ -14,6 +14,7 @@ class DatabaseController extends GetxController {
   Database? _database;
 
   Future<Database> get database async {
+    // await dropDatabase();
     if (_database != null) return _database!;
 
     _database = await _initDB(_databaseName);
@@ -35,7 +36,7 @@ class DatabaseController extends GetxController {
     _logger.i("Opening database ...");
     return await openDatabase(
       filePath,
-      version: 1,
+      version: 2,
       onCreate: _onCreateDB,
     );
   }
@@ -59,6 +60,7 @@ class DatabaseController extends GetxController {
     await db.execute('''
         CREATE TABLE $tableProducts (
           ${ProductFields.id} $idType, 
+          ${ProductFields.ownerId} $intType, 
           ${ProductFields.name} $textType, 
           ${ProductFields.desc} $textType, 
           ${ProductFields.unitPrice} $floatingType,
@@ -69,13 +71,15 @@ class DatabaseController extends GetxController {
 
     // Creating promotion table
     await db.execute('''
-        CREATE TABLE $tablePromotion (
+        CREATE TABLE $tablePromotions (
           ${PromotionFields.id} $idType, 
+          ${PromotionFields.ownerId} $intType, 
           ${PromotionFields.name} $textType, 
           ${PromotionFields.desc} $textType, 
           ${PromotionFields.unitPrice} $floatingType,
           ${PromotionFields.amount} $intType,
-          ${PromotionFields.createdAt} $textType
+          ${PromotionFields.createdAt} $textType,
+          ${PromotionFields.videoUrl} $textType
         )
         ''');
 
@@ -83,16 +87,8 @@ class DatabaseController extends GetxController {
     await db.execute('''
         CREATE TABLE $tableProductImages (
           ${ProductImageFields.id} $idType, 
-          ${ProductImageFields.productId} $intType, 
+          ${ProductImageFields.productId} $intType,
           ${ProductImageFields.path} $textType
-        )
-        ''');
-    // Creating promotion table
-    await db.execute('''
-        CREATE TABLE $tablePromotionVideo (
-          ${PromotionVideoFields.id} $idType, 
-          ${PromotionVideoFields.promotionId} $intType, 
-          ${PromotionVideoFields.path} $textType 
         )
         ''');
   }

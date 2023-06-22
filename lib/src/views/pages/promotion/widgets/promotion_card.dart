@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/models/models.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
@@ -7,18 +8,10 @@ import 'package:hulu_advert/src/themes/app_colors.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
 import 'package:hulu_advert/src/views/shared/video_player_view.dart';
 
-class PromotionCard extends StatefulWidget {
-  const PromotionCard({
-    super.key,
-  });
+class PromotionCard extends StatelessWidget {
+  const PromotionCard({super.key, required this.promotion});
+  final PromotionModel promotion;
 
-  @override
-  State<PromotionCard> createState() => _PromotionCardState();
-}
-
-class _PromotionCardState extends State<PromotionCard> {
-  int currentIndex = 0;
-  int count = 5;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -29,16 +22,15 @@ class _PromotionCardState extends State<PromotionCard> {
       ),
       child: Column(
         children: [
-          const Stack(
+          Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(defaultBorderRadiusSize),
                   topRight: Radius.circular(defaultBorderRadiusSize),
                 ),
                 child: VideoPlayerView(
-                  url:
-                      'data/user/0/com.example.hulu_advert/cache/cb4ed5f4-f9af-4f36-88c7-d8683864b2d0/pexels-benjamin-hastings-17209196-960x540-30fps.mp4',
+                  url: promotion.videoUrl!,
                   dataSourceType: DataSourceType.file,
                   autoPlay: false,
                 ),
@@ -80,14 +72,14 @@ class _PromotionCardState extends State<PromotionCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Men t-shirt from happy store",
+                  promotion.name ?? "",
                   style: textTheme.bodyLarge!.copyWith(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 5.height(),
                 Text(
-                  "Best Quality men t shirt , full cotton , brand new and european standard",
+                  promotion.desc ?? "",
                   style: textTheme.bodySmall!.copyWith(),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -109,7 +101,7 @@ class _PromotionCardState extends State<PromotionCard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
-                            "52 available",
+                            "${promotion.amount} available",
                             style: textTheme.labelLarge,
                           ),
                         ),
@@ -121,7 +113,8 @@ class _PromotionCardState extends State<PromotionCard> {
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
-                            (2500.00).priceFormat(),
+                            ((promotion.unitPrice ?? 0).toDouble())
+                                .priceFormat(),
                             style: textTheme.labelLarge,
                           ),
                         ),
