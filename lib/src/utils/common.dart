@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/extensions/file_extensions.dart';
+import 'package:hulu_advert/src/utils/constants.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:hulu_advert/src/themes/app_colors.dart';
+import 'package:logger/logger.dart';
+import 'package:video_compress/video_compress.dart';
 
 class Common {
   Common._();
@@ -98,12 +101,34 @@ class Common {
     return images;
   }
 
-  static Future<XFile?> pickVideo() async {
+  static Future<File?> pickVideo() async {
     final ImagePicker picker = ImagePicker();
 
     final XFile? galleryVideo =
         await picker.pickVideo(source: ImageSource.gallery);
 
-    return galleryVideo;
+    return galleryVideo != null ? File(galleryVideo!.path) : null;
+  }
+
+  static Future<File> compressVideo(File videoFile) async {
+    final MediaInfo? info = await VideoCompress.compressVideo(
+      videoFile.path,
+      quality: VideoQuality.LowQuality,
+      deleteOrigin: false,
+    );
+
+    return File(info!.path!);
+  }
+
+  static Future<File?> pickVideoAndCompress() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final compressedFile = await compressVideo(File(pickedFile.path));
+      return compressedFile;
+    }
+
+    return null;
   }
 }

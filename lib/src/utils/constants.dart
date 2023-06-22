@@ -20,7 +20,7 @@ const defaultBorderRadiusSize = 8.0;
 
 // Asset constants
 const productImagesMax = 5;
-const promotionVideoMaxSize = 30; // in mB
+const promotionVideoMaxSizeInmB = 30; // in mB
 // const _iconsPath = "assets/icons/";
 const _imagesPath = "assets/images/";
 
