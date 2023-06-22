@@ -1,15 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:bcrypt/bcrypt.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/repositories/repositories.dart';
-import 'package:hulu_advert/src/utils/common.dart';
 import 'package:logger/logger.dart';
 
 import 'package:hulu_advert/src/models/preference_model.dart';
 import 'package:hulu_advert/src/models/user_model.dart';
-import 'package:hulu_advert/src/repositories/preference_repository.dart';
 import 'package:hulu_advert/src/routes/routes.dart';
 
 class AuthController extends GetxController {

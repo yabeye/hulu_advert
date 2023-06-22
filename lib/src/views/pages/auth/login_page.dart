@@ -56,18 +56,22 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     try {
+      Common.showLoading();
       await _authController.login(
         username: _usernameController.text,
         password: _passwordController.text,
       );
+      Get.back();
 
       Common.dismissKeyboard();
       Common.showNotification(title: "Log In", body: "Logged in Successfully");
 
       Get.offAllNamed(AppRoutes.home);
     } on HttpException catch (e) {
+      Get.back();
       Common.showError(e.message);
     } catch (e) {
+      Get.back();
       Common.showError(e.toString());
     }
   }

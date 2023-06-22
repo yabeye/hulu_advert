@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:hulu_advert/src/models/user_model.dart';
+import 'package:hulu_advert/src/models/models.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
 
 const String _databaseName = "hulu_advert.db";
@@ -43,8 +43,6 @@ class DatabaseController extends GetxController {
   Future _onCreateDB(Database db, int version) async {
     _logger.i("Creating a new database ...");
 
-    // Creating images table
-
     // Creating users table
     await db.execute('''
         CREATE TABLE $tableUsers (
@@ -56,13 +54,52 @@ class DatabaseController extends GetxController {
           ${UserFields.createdAt} $textType
         )
         ''');
+
     // Creating products table
+    await db.execute('''
+        CREATE TABLE $tableProducts (
+          ${ProductFields.id} $idType, 
+          ${ProductFields.name} $textType, 
+          ${ProductFields.desc} $textType, 
+          ${ProductFields.unitPrice} $floatingType,
+          ${ProductFields.amount} $intType,
+          ${ProductFields.createdAt} $textType
+        )
+        ''');
 
     // Creating promotion table
+    await db.execute('''
+        CREATE TABLE $tablePromotion (
+          ${PromotionFields.id} $idType, 
+          ${PromotionFields.name} $textType, 
+          ${PromotionFields.desc} $textType, 
+          ${PromotionFields.unitPrice} $floatingType,
+          ${PromotionFields.amount} $intType,
+          ${PromotionFields.createdAt} $textType
+        )
+        ''');
+
+    // Creating images table
+    await db.execute('''
+        CREATE TABLE $tableProductImages (
+          ${ProductImageFields.id} $idType, 
+          ${ProductImageFields.productId} $intType, 
+          ${ProductImageFields.path} $textType
+        )
+        ''');
+    // Creating promotion table
+    await db.execute('''
+        CREATE TABLE $tablePromotionVideo (
+          ${PromotionVideoFields.id} $idType, 
+          ${PromotionVideoFields.promotionId} $intType, 
+          ${PromotionVideoFields.path} $textType 
+        )
+        ''');
   }
 
   // ! Danger Zone
   Future dropDatabase() async {
+    _logger.w("Database is deleted!");
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, _databaseName);
     await deleteDatabase(path);

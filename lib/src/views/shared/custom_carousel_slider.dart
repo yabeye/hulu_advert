@@ -9,6 +9,8 @@ class CustomCarouselSlider extends StatefulWidget {
   final List<String> imageUrls;
   final double height;
   final int currentIndex;
+  final String imageTitle;
+  final String imageDesc;
   final void Function(int)? onPageChanged;
 
   const CustomCarouselSlider({
@@ -16,6 +18,8 @@ class CustomCarouselSlider extends StatefulWidget {
     required this.imageUrls,
     required this.height,
     required this.currentIndex,
+    this.imageTitle = "",
+    this.imageDesc = "",
     this.onPageChanged,
   });
 
@@ -39,16 +43,18 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                   Get.to(
                     ImageDetail(
                       file: File(
-                        "/data/user/0/com.example.hulu_advert/cache/scaled_display.png",
+                        widget.imageUrls[index],
                       ),
+                      title: widget.imageTitle,
+                      description: widget.imageDesc,
                     ),
                   );
                 },
-                child: Image.asset(
-                  widget.imageUrls[index],
+                child: Image.file(
+                  File(
+                    widget.imageUrls[index],
+                  ),
                   fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
                 ),
               );
             },

@@ -1,11 +1,32 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hulu_advert/src/controllers/controllers.dart';
+import 'package:hulu_advert/src/routes/app_pages.dart';
+import 'package:hulu_advert/src/routes/app_routes.dart';
+import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({super.key});
   final _productController = Get.find<ProductController>();
+
+  _addProduct() async {
+    try {
+      Common.showLoading();
+      await _productController.addProduct();
+      Get.back();
+      Common.showNotification(title: "Product added");
+      Get.until((route) => route.settings.name!.startsWith(AppRoutes.home));
+    } on HttpException catch (e) {
+      Get.back();
+      Common.showError(e.message);
+    } catch (e) {
+      Get.back();
+      Common.showError(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +38,7 @@ class ProductPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton.icon(
-              onPressed: () async {
-                await _productController.addProduct();
-              },
+              onPressed: _addProduct,
               icon: const Icon(Icons.add),
               label: const Text('Add'),
             ),

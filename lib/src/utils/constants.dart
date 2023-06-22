@@ -37,4 +37,5 @@ const imgNoUser = "${_imagesPath}no-user.png";
 const idType = "INTEGER PRIMARY KEY AUTOINCREMENT";
 const textType = "TEXT NOT NULL";
 const boolType = "BOOLEAN NOT NULL";
+const intType = "INTEGER NOT NULL";
 const floatingType = "REAL NOT NULL";

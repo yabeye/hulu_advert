@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/extensions/file_extensions.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:hulu_advert/src/themes/app_colors.dart';
@@ -84,13 +85,14 @@ class Common {
     List<File> images = [];
     final ImagePicker picker = ImagePicker();
     final imageFiles = await picker.pickMultiImage(
-      imageQuality: 100,
+      imageQuality: 50,
       maxHeight: 1000,
       maxWidth: 1000,
     );
     if (imageFiles.isNotEmpty) {
       for (final image in imageFiles) {
         images.add(File(image.path));
+        print("Current Selcted Size: ${images.first.sizeInkB()}");
       }
     }
     return images;
