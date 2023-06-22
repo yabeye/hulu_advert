@@ -74,7 +74,7 @@ class _MiniAdminPageState extends State<MiniAdminPage> {
                 UserMiniProfile(),
                 20.height(),
                 10.height(),
-                const ActivityGraph(),
+                ActivityGraph(),
                 const StatCard(),
                 const SizedBox(height: 30),
               ],

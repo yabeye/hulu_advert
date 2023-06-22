@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/user_controller.dart';
 import 'package:hulu_advert/src/views/pages/feed/feed_page.dart';
 import 'package:hulu_advert/src/views/pages/miniAdmin/mini_admin_page.dart';
 import 'package:hulu_advert/src/views/pages/search/search_page.dart';
@@ -19,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _isDialOpen = ValueNotifier<bool>(false);
+    Get.find<UserController>();
   }
 
   @override

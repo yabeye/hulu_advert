@@ -38,15 +38,15 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    nameController.dispose();
-    descriptionController.dispose();
-    priceController.dispose();
-    amountController.dispose();
-    catagories.value = [];
-    super.dispose();
-  }
+  // @override
+  // void onClose() {
+  //   nameController.dispose();
+  //   descriptionController.dispose();
+  //   priceController.dispose();
+  //   amountController.dispose();
+  //   catagories.value = [];
+  //   super.dispose();
+  // }
 
   fetchAllProducts() async {
     feedProducts.value = await _productRepo.getAllProducts();

@@ -9,6 +9,7 @@ import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/models/models.dart';
 import 'package:hulu_advert/src/repositories/promotion_repository.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
+import 'package:video_compress/video_compress.dart';
 
 class PromotionController extends GetxController {
   var isLoading = false.obs;
@@ -97,16 +98,19 @@ class PromotionController extends GetxController {
     newPromotion = await _promotionRepo.addPromotion(newPromotion);
 
     feedPromotions.insert(0, newPromotion);
+
     _logger.i("New Promotion ${newPromotion.toString()}");
 
-    _reset();
+    reset();
   }
 
-  _reset() {
+  reset() {
     nameController.text = "";
     descriptionController.text = "";
     priceController.text = "";
     amountController.text = "";
     videoFile = null;
+    VideoCompress.cancelCompression();
+    VideoCompress.deleteAllCache();
   }
 }

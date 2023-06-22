@@ -29,6 +29,11 @@ class FilterController extends GetxController {
   }
 
   search() async {
+    if (searchKeyword.text.isEmpty) {
+      productSearchResult.value = [];
+      promotionSearchResult.value = [];
+      return;
+    }
     productSearchResult.value = _productRepo.feedProducts
         .where((e) => ((e.name?.toLowerCase() ?? "")
                 .contains(searchKeyword.text.toLowerCase()) ||

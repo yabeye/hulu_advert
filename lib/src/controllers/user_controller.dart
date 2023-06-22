@@ -11,10 +11,10 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchAllProducts();
+    fetchAllUsers();
   }
 
-  fetchAllProducts() async {
+  fetchAllUsers() async {
     feedUsers.value = await _usersRepo.getAllUsers();
   }
 }

@@ -35,7 +35,6 @@ class _AddPromotionVideoSectionState extends State<AddPromotionVideoSection> {
     }
 
     originalFileSize = selectedVideo.sizeInmB();
-    print("Original file size: ${originalFileSize}");
 
     _isCompressing = true;
     setState(() {});
@@ -54,6 +53,12 @@ class _AddPromotionVideoSectionState extends State<AddPromotionVideoSection> {
     _promotion.videoFile = File(selectedVideo.path);
     _isCompressing = false;
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _promotion.reset();
+    super.dispose();
   }
 
   @override

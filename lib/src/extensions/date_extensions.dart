@@ -5,4 +5,10 @@ extension dateTimeHelper on DateTime {
     final DateFormat formatter = DateFormat('MMM dd, yyyy');
     return formatter.format(this);
   }
+
+  bool isSameDay(DateTime otherDay) {
+    return year == otherDay.year &&
+        month == otherDay.month &&
+        day == otherDay.day;
+  }
 }

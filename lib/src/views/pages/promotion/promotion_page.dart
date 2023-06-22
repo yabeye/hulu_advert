@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:hulu_advert/src/controllers/controllers.dart';
 import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/utils/common.dart';
