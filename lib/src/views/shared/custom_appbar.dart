@@ -9,6 +9,7 @@ class CustomAppBar extends AppBar {
     double? elevation,
     Brightness? brightness,
     bool showLeading = true,
+    Widget? title,
     VoidCallback? onBack,
   }) : super(
           key: key,
@@ -29,9 +30,10 @@ class CustomAppBar extends AppBar {
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 22,
-                    color: AppColors.gray,
+                    // color: AppColors.gray,
                   ),
                 )
               : null,
+          title: title,
         );
 }

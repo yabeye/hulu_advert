@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
 import 'package:hulu_advert/src/routes/routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
@@ -15,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _authController = Get.find<AuthController>();
 
   late final TextEditingController _usernameController;
   late final TextEditingController _passwordController;
@@ -46,15 +50,30 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _onLogIn() {
-    // if (!_formKey.currentState!.validate()) {
-    //   return;
-    // }
+  _onLogIn() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
-    Common.dismissKeyboard();
-    Common.showNotification(title: "Log In", body: "Logged in Successfully");
+    try {
+      Common.showLoading();
+      await _authController.login(
+        username: _usernameController.text,
+        password: _passwordController.text,
+      );
+      Get.back();
 
-    Get.offAllNamed(AppRoutes.home);
+      Common.dismissKeyboard();
+      Common.showNotification(title: "Log In", body: "Logged in Successfully");
+
+      Get.offAllNamed(AppRoutes.home);
+    } on HttpException catch (e) {
+      Get.back();
+      Common.showError(e.message);
+    } catch (e) {
+      Get.back();
+      Common.showError(e.toString());
+    }
   }
 
   @override
@@ -77,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Log In",
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
                   50.height(),
@@ -92,6 +111,10 @@ class _LoginPageState extends State<LoginPage> {
                       _usernameFocus.unfocus();
                       FocusScope.of(context).requestFocus(_passwordFocus);
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "username is required",
+                    ),
                   ),
                   10.height(),
                   TextFormField(
@@ -119,7 +142,12 @@ class _LoginPageState extends State<LoginPage> {
                     onFieldSubmitted: (v) {
                       _usernameFocus.unfocus();
                       FocusScope.of(context).requestFocus(_passwordFocus);
+                      _onLogIn();
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "password is required",
+                    ),
                   ),
                   _buildBottomWidgets(isLoading: isLoading),
                 ],
@@ -156,16 +184,16 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: isLoading ? null : _onLogIn,
           text: "Log In",
         ),
-        100.height(),
+        50.height(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Don't have an account?", style: textTheme.labelLarge),
+            Text("Don't have an account?", style: textTheme.bodySmall),
             TextButton(
               onPressed: () => Get.toNamed(AppRoutes.register),
               child: Text(
                 "Register",
-                style: textTheme.labelLarge!
+                style: textTheme.bodySmall!
                     .copyWith(color: Theme.of(context).primaryColor),
               ),
             ),

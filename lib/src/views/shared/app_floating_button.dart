@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/themes/app_colors.dart';
 
 class AppFloatingButton extends StatelessWidget {
@@ -41,22 +44,26 @@ class AppFloatingButton extends StatelessWidget {
       shape: const StadiumBorder(),
       children: [
         SpeedDialChild(
-          child: const Icon(Icons.image),
+          child: const FaIcon(FontAwesomeIcons.images),
           backgroundColor: Colors.white,
           foregroundColor: AppColors.kPrimaryColor,
           label: 'Add Product',
-          labelStyle: const TextStyle(color: Colors.white),
+          labelStyle: const TextStyle(color: AppColors.black),
           visible: true,
-          onTap: onChooseUpload,
+          onTap: () {
+            Get.toNamed(AppRoutes.product);
+          },
         ),
         SpeedDialChild(
-          child: const Icon(Icons.video_call),
+          child: const FaIcon(FontAwesomeIcons.video),
           backgroundColor: Colors.white,
           foregroundColor: AppColors.kPrimaryColor,
           label: 'Add Promotion',
-          labelStyle: const TextStyle(color: Colors.white),
+          labelStyle: const TextStyle(color: AppColors.black),
           visible: true,
-          onTap: onChooseUpload,
+          onTap: () {
+            Get.toNamed(AppRoutes.promotion);
+          },
         ),
       ],
       child: const Icon(Icons.add, color: AppColors.white),

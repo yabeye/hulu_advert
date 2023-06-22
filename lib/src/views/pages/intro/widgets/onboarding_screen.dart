@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({
@@ -19,12 +20,10 @@ class OnboardingScreen extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 45.0,
-              vertical: 90.0,
+              horizontal: 30.0,
+              vertical: 60.0,
             ),
-            child: Image.asset(
-              imageUrl,
-            ),
+            child: Image.asset(imageUrl),
           ),
         ),
         Padding(

@@ -12,9 +12,57 @@ class AppThemes {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         cardColor: AppColors.kSecondaryColor,
         fontFamily: font,
-        textTheme: ThemeData.light().textTheme.apply(fontFamily: font),
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.black,
+        // textTheme: ThemeData.light().textTheme.apply(fontFamily: font),
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: font,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: font,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: font,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 20,
+            fontFamily: font,
+            fontWeight: FontWeight.w600,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 18,
+            fontFamily: font,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 16,
+            fontFamily: font,
+          ),
+          titleLarge: TextStyle(
+            fontSize: 16,
+            fontFamily: font,
+            // color: AppColors.gray,
+          ),
+          titleMedium: TextStyle(
+            fontSize: 14,
+            fontFamily: font,
+            // color: AppColors.gray,
+          ),
+          titleSmall: TextStyle(
+            fontFamily: font,
+            fontSize: 12,
+            // color: AppColors.gray,
+          ),
+        ),
+        colorScheme: const ColorScheme.light(
+          primary: AppColors.kPrimaryColor,
           secondary: AppColors.kPrimaryColor,
           surface: AppColors.kPrimaryColor,
           background: AppColors.white,
@@ -59,12 +107,23 @@ class AppThemes {
         textSelectionTheme: TextSelectionThemeData(
             cursorColor: AppColors.kPrimaryColor,
             selectionHandleColor: Colors.black.withOpacity(0.1)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(AppColors.kPrimaryColor),
+            textStyle: MaterialStateProperty.all<TextStyle>(
+              const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           // focusedBorder: InputBorder.none,
           border: InputBorder.none,
           errorBorder: InputBorder.none,
           labelStyle: TextStyle(
-            color: Colors.black54,
+            color: Colors.black,
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
