@@ -9,6 +9,7 @@ InputDecoration getInputDecoration(
 }) =>
     InputDecoration(
       isDense: false,
+      counterText: '',
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
         borderSide: const BorderSide(
@@ -23,10 +24,24 @@ InputDecoration getInputDecoration(
           width: 1.5,
         ),
       ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
+        borderSide: const BorderSide(
+          color: AppColors.kPrimaryColor,
+          width: 1.5,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(defaultBorderRadiusSize),
+        borderSide: const BorderSide(
+          color: AppColors.kPrimaryColor,
+          width: 1.5,
+        ),
+      ),
       hintText: hintText,
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 12,
+        horizontal: 20,
+        vertical: 20,
       ),
       suffixIconConstraints: const BoxConstraints(
           // maxWidth: 0,

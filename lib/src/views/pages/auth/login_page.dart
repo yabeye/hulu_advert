@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
 import 'package:hulu_advert/src/routes/routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
@@ -15,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _authController = Get.find<AuthController>();
 
   late final TextEditingController _usernameController;
   late final TextEditingController _passwordController;
@@ -46,15 +50,26 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _onLogIn() {
-    // if (!_formKey.currentState!.validate()) {
-    //   return;
-    // }
+  _onLogIn() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
-    Common.dismissKeyboard();
-    Common.showNotification(title: "Log In", body: "Logged in Successfully");
+    try {
+      await _authController.login(
+        username: _usernameController.text,
+        password: _passwordController.text,
+      );
 
-    Get.offAllNamed(AppRoutes.home);
+      Common.dismissKeyboard();
+      Common.showNotification(title: "Log In", body: "Logged in Successfully");
+
+      Get.offAllNamed(AppRoutes.home);
+    } on HttpException catch (e) {
+      Common.showError(e.message);
+    } catch (e) {
+      Common.showError(e.toString());
+    }
   }
 
   @override
@@ -92,6 +107,10 @@ class _LoginPageState extends State<LoginPage> {
                       _usernameFocus.unfocus();
                       FocusScope.of(context).requestFocus(_passwordFocus);
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "username is required",
+                    ),
                   ),
                   10.height(),
                   TextFormField(
@@ -119,7 +138,12 @@ class _LoginPageState extends State<LoginPage> {
                     onFieldSubmitted: (v) {
                       _usernameFocus.unfocus();
                       FocusScope.of(context).requestFocus(_passwordFocus);
+                      _onLogIn();
                     },
+                    validator: (v) => InputValidators.isRequired(
+                      v,
+                      message: "password is required",
+                    ),
                   ),
                   _buildBottomWidgets(isLoading: isLoading),
                 ],

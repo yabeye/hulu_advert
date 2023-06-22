@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hulu_advert/src/extensions/num_extensions.dart';
+import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/auth_controller.dart';
+import 'package:hulu_advert/src/extensions/extensions.dart';
 import 'package:hulu_advert/src/views/pages/miniAdmin/widgets/user_mini_profile.dart';
 import 'package:hulu_advert/src/views/pages/miniAdmin/widgets/widgets.dart';
 
@@ -11,14 +13,30 @@ class MiniAdminPage extends StatefulWidget {
 }
 
 class _MiniAdminPageState extends State<MiniAdminPage> {
+  final _authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: 20.height(),
+        SliverAppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Mini Admin",
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              InkWell(
+                onTap: _authController.logout,
+                child: const Icon(Icons.logout),
+              ),
+            ],
+          ),
+          floating: true,
+          snap: true,
         ),
         SliverToBoxAdapter(
           child: Padding(
@@ -33,26 +51,26 @@ class _MiniAdminPageState extends State<MiniAdminPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Current User",
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    Text(
-                      "joined on Dec 12, 2022",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(color: Colors.grey),
+                    Column(
+                      children: [
+                        // Text(
+                        //   "Current User",
+                        //   style: Theme.of(context).textTheme.displaySmall,
+                        // ),
+                        Text(
+                          "joined on ${_authController.currentUser.value.createdAt!.joinedFormat()}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
                 10.height(),
-                const UserMiniProfile(),
+                UserMiniProfile(),
                 20.height(),
-                Text(
-                  "Mini Admin",
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
                 10.height(),
                 const ActivityGraph(),
                 const StatCard(),

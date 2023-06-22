@@ -2,11 +2,19 @@ import 'package:flutter/services.dart';
 
 class InputValidators {
   static isRequired(String? v, {String? message}) {
-    if (v == null) {
+    if (v == null || v.isEmpty) {
       return message ?? "This filed is required";
     }
-    if (v.isEmpty) {
-      return message ?? "This filed is required";
+    return null;
+  }
+
+  static withInRange(v, {int? min}) {
+    if (v == null || v!.isEmpty) {
+      return "This filed is required";
+    }
+
+    if (v.length < min) {
+      return "min $min required";
     }
 
     return null;

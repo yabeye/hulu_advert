@@ -31,3 +31,10 @@ const board2 = "${_imagesPath}board-2.png";
 const board3 = "${_imagesPath}board-3.png";
 const imgTShirt = "${_imagesPath}t-shirt.jpg";
 const imgSearching = "${_imagesPath}searching.png";
+const imgNoUser = "${_imagesPath}no-user.png";
+
+// database
+const idType = "INTEGER PRIMARY KEY AUTOINCREMENT";
+const textType = "TEXT NOT NULL";
+const boolType = "BOOLEAN NOT NULL";
+const floatingType = "REAL NOT NULL";

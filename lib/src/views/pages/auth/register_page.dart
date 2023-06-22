@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/extensions/extensions.dart';
+import 'package:hulu_advert/src/models/models.dart';
 import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/shared/shared.dart';
@@ -15,6 +19,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   late final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _authController = Get.find<AuthController>();
 
   late final TextEditingController _fullNameController;
   late final TextEditingController _phoneController;
@@ -58,18 +63,38 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  void _onSignUp() {
+  _onSignUp() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    Common.dismissKeyboard();
-    Common.showNotification(
-      title: "Register",
-      body: "You have registered Successfully",
+    final newUser = UserModel(
+      fullName: _fullNameController.text,
+      username: _usernameController.text,
+      password: _passwordController.text,
+      phone: _phoneController.text,
+      createdAt: DateTime.now(),
     );
 
-    Get.toNamed(AppRoutes.home);
+    try {
+      Common.showLoading();
+      await _authController.signUp(user: newUser);
+      Get.back();
+      Common.dismissKeyboard();
+      Get.offAllNamed(AppRoutes.home);
+      Common.showNotification(
+        title: "Success",
+        body: "Registered Successfully",
+      );
+
+      Get.offAllNamed(AppRoutes.home);
+    } on HttpException catch (e) {
+      Get.back();
+      Common.showError(e.message);
+    } catch (e) {
+      Get.back();
+      Common.showError(e.toString());
+    }
   }
 
   @override
@@ -121,13 +146,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       "phone",
                       prefixIcon: Icons.phone,
                     ),
+                    maxLength: 13,
                     onFieldSubmitted: (v) {
                       _phoneFocus.unfocus();
                       FocusScope.of(context).requestFocus(_usernameFocus);
                     },
-                    validator: (v) => InputValidators.isRequired(
+                    validator: (v) => InputValidators.withInRange(
                       v,
-                      message: "phone is required",
+                      min: 9,
                     ),
                   ),
                   10.height(),
@@ -170,12 +196,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
+                    maxLength: 32,
                     onFieldSubmitted: (v) {
                       _passwordFocus.unfocus();
                     },
-                    validator: (v) => InputValidators.isRequired(
+                    validator: (v) => InputValidators.withInRange(
                       v,
-                      message: "password is required",
+                      min: 6,
                     ),
                   ),
                   _buildBottomWidgets(isLoading: isLoading),

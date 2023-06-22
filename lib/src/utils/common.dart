@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,46 +14,61 @@ class Common {
 
   static void dismissKeyboard() => Get.focusScope!.unfocus();
 
-  static Future showNotification({String? title, String? body}) async {
-    if (title == null && body == null) return;
+  static void showLoading() {
+    Get.dialog(
+      Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            color: AppColors.white,
+          ),
+          child: const SpinKitFadingCircle(
+            size: 50,
+            color: AppColors.red,
+          ),
+        ),
+      ),
+      barrierColor: AppColors.black.withAlpha(36),
+      barrierDismissible: false,
+      transitionCurve: Curves.easeInOutBack,
+    );
+  }
+
+  static void showError(String error) {
     Get.showSnackbar(
       GetSnackBar(
-        messageText: const Text(
-          "",
-          style: TextStyle(color: AppColors.kPrimaryColor),
+        messageText: Text(
+          error,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
         ),
-        titleText: Row(
-          children: [
-            const Icon(
-              Icons.check_circle,
-              color: AppColors.kPrimaryColor,
-              size: 32,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    title ?? "",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    body ?? "",
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.all(20),
+        borderRadius: 24,
+        backgroundColor: AppColors.red,
+        duration: const Duration(milliseconds: 2000),
+      ),
+    );
+  }
+
+  static Future showNotification({String? title, String? body}) async {
+    Get.showSnackbar(
+      GetSnackBar(
+        messageText: Text(
+          body ?? "",
+          style: const TextStyle(color: AppColors.kPrimaryColor),
+        ),
+        titleText: Text(
+          title ?? "",
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         snackPosition: SnackPosition.TOP,
         margin: const EdgeInsets.all(20),
