@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Log In",
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
                   50.height(),
@@ -184,16 +184,16 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: isLoading ? null : _onLogIn,
           text: "Log In",
         ),
-        100.height(),
+        50.height(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Don't have an account?", style: textTheme.labelLarge),
+            Text("Don't have an account?", style: textTheme.bodySmall),
             TextButton(
               onPressed: () => Get.toNamed(AppRoutes.register),
               child: Text(
                 "Register",
-                style: textTheme.labelLarge!
+                style: textTheme.bodySmall!
                     .copyWith(color: Theme.of(context).primaryColor),
               ),
             ),

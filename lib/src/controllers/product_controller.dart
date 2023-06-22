@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hulu_advert/src/controllers/auth_controller.dart';
 import 'package:hulu_advert/src/models/models.dart';
 import 'package:hulu_advert/src/repositories/product_repository.dart';
+import 'package:hulu_advert/src/utils/common.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -53,10 +54,6 @@ class ProductController extends GetxController {
   }
 
   addProduct() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-
     // Fist store the images to the external storage
     final externalDirectory = await getExternalStorageDirectory();
 

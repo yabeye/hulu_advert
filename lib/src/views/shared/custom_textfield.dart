@@ -8,6 +8,9 @@ InputDecoration getInputDecoration(
   Widget? suffixIcon,
 }) =>
     InputDecoration(
+      // hintStyle: const TextStyle(
+      //   fontSize: 14,
+      // ),
       isDense: false,
       counterText: '',
       enabledBorder: OutlineInputBorder(

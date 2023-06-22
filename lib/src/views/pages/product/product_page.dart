@@ -6,12 +6,22 @@ import 'package:hulu_advert/src/controllers/controllers.dart';
 import 'package:hulu_advert/src/routes/app_routes.dart';
 import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/pages/product/widgets/widgets.dart';
+import 'package:hulu_advert/src/views/shared/shared.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({super.key});
   final _productController = Get.find<ProductController>();
 
   _addProduct() async {
+    if (!_productController.formKey.currentState!.validate()) {
+      return;
+    }
+
+    if (_productController.photos.isEmpty) {
+      Common.showError("Add at least one photo");
+      return;
+    }
+
     try {
       Common.showLoading();
       await _productController.addProduct();

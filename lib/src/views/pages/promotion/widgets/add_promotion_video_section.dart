@@ -15,7 +15,7 @@ import 'package:hulu_advert/src/utils/utils.dart';
 import 'package:hulu_advert/src/views/shared/video_player_view.dart';
 
 class AddPromotionVideoSection extends StatefulWidget {
-  AddPromotionVideoSection({super.key});
+  const AddPromotionVideoSection({super.key});
 
   @override
   State<AddPromotionVideoSection> createState() =>

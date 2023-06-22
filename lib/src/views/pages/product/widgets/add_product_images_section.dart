@@ -66,7 +66,7 @@ class _AddProductImagesSectionState extends State<AddProductImagesSection> {
               final photos = controller.photos;
               return SizedBox(
                 width: context.width,
-                height: context.height * (photos.length < 3 ? .2 : .4),
+                height: context.height * (photos.length < 3 ? .2 : .5),
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: photos.length + 1,

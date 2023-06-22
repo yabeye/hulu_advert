@@ -122,10 +122,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Register",
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
-                  20.height(),
+                  30.height(),
                   TextFormField(
                     controller: _fullNameController,
                     focusNode: _fullNameFocus,
@@ -270,14 +270,14 @@ class _RegisterPageState extends State<RegisterPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Already have an account?", style: textTheme.labelLarge),
+            Text("Already have an account?", style: textTheme.bodySmall),
             TextButton(
               onPressed: () {
                 Get.back();
               },
               child: Text(
                 "Login",
-                style: textTheme.labelLarge!
+                style: textTheme.bodySmall!
                     .copyWith(color: Theme.of(context).primaryColor),
               ),
             ),

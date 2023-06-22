@@ -24,8 +24,12 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Obx(() => CustomTabScrollView(
-          tab1Badge: searchController.productSearchResult.length,
-          tab2Badge: searchController.promotionSearchResult.length,
+          tab1Badge: searchController.searchKeyword.value.text.isEmpty
+              ? null
+              : searchController.productSearchResult.length,
+          tab2Badge: searchController.searchKeyword.value.text.isEmpty
+              ? null
+              : searchController.promotionSearchResult.length,
           children: [
             [
               SliverToBoxAdapter(
@@ -62,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
                     ? Container()
                     : Column(
                         children: [
-                          SizedBox(height: context.height * .1),
+                          SizedBox(height: context.height * .25),
                           Image.asset(
                             searchController.searchKeyword.value.text.isEmpty
                                 ? imgSearching
@@ -120,7 +124,7 @@ class _SearchPageState extends State<SearchPage> {
                     ? Container()
                     : Column(
                         children: [
-                          SizedBox(height: context.height * .1),
+                          SizedBox(height: context.height * .25),
                           Image.asset(
                             searchController.searchKeyword.value.text.isEmpty
                                 ? imgSearching

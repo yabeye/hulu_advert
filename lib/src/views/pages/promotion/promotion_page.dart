@@ -13,6 +13,15 @@ class PromotionPage extends StatelessWidget {
   final _promotionController = Get.find<PromotionController>();
 
   _addPromotion() async {
+    if (!_promotionController.formKey.currentState!.validate()) {
+      return;
+    }
+
+    if (_promotionController.videoFile == null) {
+      Common.showError("Add a video");
+      return;
+    }
+
     try {
       Common.showLoading();
       await _promotionController.addPromotion();
@@ -46,15 +55,15 @@ class PromotionPage extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AddPromotionVideoSection(),
-              const AddPromotionInfoSection(),
-              const SizedBox(height: 30),
+              AddPromotionInfoSection(),
+              SizedBox(height: 30),
             ],
           ),
         ),

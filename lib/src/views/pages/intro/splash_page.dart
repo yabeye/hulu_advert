@@ -35,12 +35,12 @@ class _SplashPageState extends State<SplashPage> {
             children: [
               Lottie.asset(
                 logoAnimation,
-                height: 200,
-                width: 200,
+                height: 250,
+                width: 250,
                 onWarning: print,
               ),
               const Text(
-                "Hulu Advert",
+                appName,
                 style: TextStyle(
                   fontSize: 22,
                   color: AppColors.kPrimaryColor,
@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
             child: Text(
               "by @yabeye",
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 color: AppColors.gray,
               ),
             ),

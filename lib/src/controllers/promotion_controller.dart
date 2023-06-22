@@ -53,29 +53,20 @@ class PromotionController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    nameController.dispose();
-    descriptionController.dispose();
-    priceController.dispose();
-    amountController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void onClose() {
+  //   nameController.dispose();
+  //   descriptionController.dispose();
+  //   priceController.dispose();
+  //   amountController.dispose();
+  //   super.dispose();
+  // }
 
   fetchAllPromotions() async {
     feedPromotions.value = await _promotionRepo.getAllPromotions();
   }
 
   addPromotion() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-
-    if (_videoFile == null) {
-      Common.showError("Add a video");
-      return;
-    }
-
     final externalDirectory = await getExternalStorageDirectory();
     final huluDirectory = await Directory('${externalDirectory!.path}/$appName')
         .create(recursive: true);
