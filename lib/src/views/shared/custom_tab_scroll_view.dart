@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:badges/badges.dart' as badges;
+
 import 'package:hulu_advert/src/controllers/controllers.dart';
 import 'package:hulu_advert/src/extensions/num_extensions.dart';
-
 import 'package:hulu_advert/src/themes/themes.dart';
 import 'package:hulu_advert/src/utils/constants.dart';
 
 class CustomTabScrollView extends StatelessWidget {
-  CustomTabScrollView({super.key, required this.children});
+  CustomTabScrollView({
+    super.key,
+    required this.children,
+    this.tab1Badge,
+    this.tab2Badge,
+  });
   final List<List<Widget>> children;
+  final int? tab1Badge;
+  final int? tab2Badge;
+
   final ui = Get.find<UIController>();
 
   @override
@@ -31,12 +40,44 @@ class CustomTabScrollView extends StatelessWidget {
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              tab1Name,
-                              style: TextStyle(
-                                color: tabIndex != 0 ? Colors.black38 : null,
-                              ),
-                            ),
+                            child: tab1Badge == null
+                                ? Text(
+                                    tab1Name,
+                                    style: TextStyle(
+                                      color:
+                                          tabIndex != 0 ? Colors.black38 : null,
+                                    ),
+                                  )
+                                : badges.Badge(
+                                    badgeContent: Text(
+                                      tab1Badge.toString(),
+                                      style: TextStyle(color: AppColors.white),
+                                    ),
+                                    badgeStyle: badges.BadgeStyle(
+                                      shape: badges.BadgeShape.square,
+                                      badgeColor: tabIndex != 0
+                                          ? AppColors.lightGray
+                                          : AppColors.kPrimaryColor,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 6,
+                                        horizontal: 8,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                        color: Colors.white,
+                                        width: 4,
+                                      ),
+                                      elevation: 0,
+                                    ),
+                                    child: Text(
+                                      tab1Name,
+                                      style: TextStyle(
+                                        color: tabIndex != 0
+                                            ? Colors.black38
+                                            : null,
+                                      ),
+                                    ),
+                                  ),
                           ),
                         ),
                         TabIndicator(isVisible: tabIndex == 0),
@@ -50,12 +91,44 @@ class CustomTabScrollView extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              tab2Name,
-                              style: TextStyle(
-                                color: tabIndex != 1 ? Colors.black38 : null,
-                              ),
-                            ),
+                            child: tab2Badge == null
+                                ? Text(
+                                    tab2Name,
+                                    style: TextStyle(
+                                      color:
+                                          tabIndex != 1 ? Colors.black38 : null,
+                                    ),
+                                  )
+                                : badges.Badge(
+                                    badgeContent: Text(
+                                      tab2Badge.toString(),
+                                      style: TextStyle(color: AppColors.white),
+                                    ),
+                                    badgeStyle: badges.BadgeStyle(
+                                      shape: badges.BadgeShape.square,
+                                      badgeColor: tabIndex != 1
+                                          ? AppColors.lightGray
+                                          : AppColors.kPrimaryColor,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 6,
+                                        horizontal: 8,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                        color: Colors.white,
+                                        width: 4,
+                                      ),
+                                      elevation: 0,
+                                    ),
+                                    child: Text(
+                                      tab2Name,
+                                      style: TextStyle(
+                                        color: tabIndex != 1
+                                            ? Colors.black38
+                                            : null,
+                                      ),
+                                    ),
+                                  ),
                           ),
                           TabIndicator(isVisible: tabIndex == 1),
                         ],

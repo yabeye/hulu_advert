@@ -84,8 +84,8 @@ class ProductRepository {
     final maps = await db.query(
       tableProducts,
       columns: ProductFields.values,
-      where: '${ProductFields.name} = ?',
-      whereArgs: [name],
+      where: '${ProductFields.name} LIKE = ?',
+      whereArgs: ['%$name%'],
     );
     _logger.i("getProductByName name: $name, result: $maps");
     return maps.map((e) => ProductModel.fromMap(e)).toList();

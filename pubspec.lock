@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  badges:
+    dependency: "direct main"
+    description:
+      name: badges
+      sha256: "6e7f3ec561ec08f47f912cfe349d4a1707afdc8dda271e17b046aa6d42c89e77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   bcrypt:
     dependency: "direct main"
     description:
@@ -837,6 +845,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  video_compress:
+    dependency: "direct main"
+    description:
+      name: video_compress
+      sha256: "407693726e674a1e1958801deb2d9daf5a5297707ba6d03375007012dae7389a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.2"
   video_player:
     dependency: "direct main"
     description:

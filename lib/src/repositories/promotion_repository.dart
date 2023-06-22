@@ -40,8 +40,8 @@ class PromotionRepository {
     final maps = await db.query(
       tablePromotions,
       columns: PromotionFields.values,
-      where: '${PromotionFields.name} = ?',
-      whereArgs: [name],
+      where: '${PromotionFields.name} LIKE = ?',
+      whereArgs: ['%$name%'],
     );
     _logger.i("getPromotionByName name: $name, result: $maps");
     return maps.map((e) => PromotionModel.fromMap(e)).toList();
